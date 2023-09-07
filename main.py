@@ -27,6 +27,8 @@ def draw_centered_text(canvas: pygame.Surface, text: pygame.Surface, x: float, y
 def draw_board(canvas):
     canvas.fill(0x00aaaa)
     draw_centered_text(canvas, my_font.render('Tic Tac Toe', True, 0xffffffff), 600, 50)
+    pygame.draw.rect(canvas, 0x000000, (490, 100, 20, 600))
+    pygame.draw.rect(canvas, 0x000000, (690, 100, 20, 600))
 
 
 #####
