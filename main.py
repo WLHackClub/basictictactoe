@@ -25,10 +25,16 @@ def draw_centered_text(canvas: pygame.Surface, text: pygame.Surface, x: float, y
 
 
 def draw_board(canvas):
-    canvas.fill(0x00aaaa)
+    canvas.fill(0x0000aa)
     draw_centered_text(canvas, my_font.render('Tic Tac Toe', True, 0xffffffff), 600, 50)
-    pygame.draw.rect(canvas, 0x000000, (490, 100, 20, 600))
-    pygame.draw.rect(canvas, 0x000000, (690, 100, 20, 600))
+    pygame.draw.rect(canvas, 0x000000, (495, 100, 10, 600))
+    pygame.draw.rect(canvas, 0x000000, (695, 100, 10, 600))
+    pygame.draw.rect(canvas, 0x000000, (300, 295, 600, 10))
+    pygame.draw.rect(canvas, 0x000000, (300, 495, 600, 10))
+    # This will give us an idea of where each square is.
+    for i in (400, 600, 800):
+        for j in (200, 400, 600):
+            pygame.draw.rect(canvas, 0xffffff, (i-10, j-10, 20, 20))
 
 
 #####
