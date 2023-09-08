@@ -6,6 +6,7 @@ import pygame
 # Initialize pygame
 #####
 
+
 pygame.init()
 pygame.display.set_caption("Tic Tac Toe by greateric")
 canvas = pygame.display.set_mode((1200, 800))
