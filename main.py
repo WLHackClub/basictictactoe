@@ -37,6 +37,32 @@ def draw_board(canvas):
             pygame.draw.rect(canvas, 0xffffff, (i-10, j-10, 20, 20))
 
 
+def mouse_button_press(pos):
+    x = pos[0]
+    y = pos[1]
+    # Check X
+    if 310 <= x <= 490:
+        board_x = 0
+    elif 510 <= x <= 690:
+        board_x = 1
+    elif 710 <= x <= 890:
+        board_x = 2
+    else:
+        # The user didn't click on the board.
+        return
+    # Check Y
+    if 110 <= y <= 290:
+        board_y = 0
+    elif 310 <= y <= 490:
+        board_y = 1
+    elif 510 <= y <= 690:
+        board_y = 2
+    else:
+        # The user didn't click on the board.
+        return
+    print('You clicked on board X:', board_x, 'Y:', board_y)
+
+
 #####
 # Main game loop
 #####
@@ -46,7 +72,8 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        # TODO: What if the user clicks on the screen?
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_button_press(event.pos)
     draw_board(pygame_canvas)
     pygame.display.update()
 
