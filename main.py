@@ -15,6 +15,19 @@ my_font = pygame.font.SysFont('Calibri', 36)
 
 
 #####
+# Game state
+#####
+
+
+board = [
+    ['none', 'none', 'none'],
+    ['none', 'none', 'none'],
+    ['none', 'none', 'none'],
+]
+turn = 'x'
+
+
+#####
 # Game functions
 #####
 
@@ -25,19 +38,25 @@ def draw_centered_text(canvas: pygame.Surface, text: pygame.Surface, x: float, y
 
 
 def draw_board(canvas):
+    global board
     canvas.fill(0x0000aa)
     draw_centered_text(canvas, my_font.render('Tic Tac Toe', True, 0xffffffff), 600, 50)
     pygame.draw.rect(canvas, 0x000000, (495, 100, 10, 600))
     pygame.draw.rect(canvas, 0x000000, (695, 100, 10, 600))
     pygame.draw.rect(canvas, 0x000000, (300, 295, 600, 10))
     pygame.draw.rect(canvas, 0x000000, (300, 495, 600, 10))
-    # This will give us an idea of where each square is.
-    for i in (400, 600, 800):
-        for j in (200, 400, 600):
-            pygame.draw.rect(canvas, 0xffffff, (i-10, j-10, 20, 20))
+    for x in (0, 1, 2):
+        for y in (0, 1, 2):
+            x_coordinate = 400 + 200*x
+            y_coordinate = 200 + 200*y
+            if board[y][x] == 'x':
+                draw_centered_text(canvas, my_font.render('X', True, 0xff5555ff), x_coordinate, y_coordinate)
+            elif board[y][x] == 'o':
+                draw_centered_text(canvas, my_font.render('O', True, 0xffff55ff), x_coordinate, y_coordinate)
 
 
 def mouse_button_press(pos):
+    global board, turn
     x = pos[0]
     y = pos[1]
     # Check X
@@ -60,12 +79,15 @@ def mouse_button_press(pos):
     else:
         # The user didn't click on the board.
         return
-    print('You clicked on board X:', board_x, 'Y:', board_y)
+    if board[board_y][board_x] == 'none':
+        board[board_y][board_x] = turn
+        turn = 'x' if turn == 'o' else 'o'
 
 
 #####
-# Main game loop
+# Main game
 #####
+
 
 while True:
     for event in pygame.event.get():
