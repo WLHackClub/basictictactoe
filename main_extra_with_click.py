@@ -40,7 +40,6 @@ def draw_board():
     pygame.draw.rect(canvas, 0x000000, (300, 495, 600, 10))
 
 
-########## DIFF ##########
 def mouse_button_press(pos):
     x = pos[0]
     y = pos[1]
@@ -65,7 +64,6 @@ def mouse_button_press(pos):
         # The user didn't click on the board.
         return
     print('You clicked on X:', board_x, 'and Y:', board_y)
-########## DIFF ##########
 
 
 #####
