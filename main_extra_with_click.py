@@ -76,10 +76,8 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
-        ########## DIFF ##########
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_button_press(event.pos)
-        ########## DIFF ##########
     draw_board()
     pygame.display.update()
 
